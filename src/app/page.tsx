@@ -77,7 +77,7 @@ function Landing() {
     {
       icon: FileSearchIcon,
       title: "Catálogo único",
-      text: "Todos os serviços públicos, com prazos e documentos exigidos.",
+      text: "Todos os serviços públicos, com prazos de atendimento.",
     },
     {
       icon: InboxIcon,

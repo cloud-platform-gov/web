@@ -42,13 +42,6 @@ export function formatDate(iso: string) {
   return dateOnly.format(new Date(iso))
 }
 
-export function formatBytes(bytes: number) {
-  if (bytes >= 1024 * 1024) {
-    return `${(bytes / (1024 * 1024)).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} MB`
-  }
-  return `${Math.round(bytes / 1024)} KB`
-}
-
 export function formatSla(days: number) {
   return days === 1 ? "1 dia" : `${days} dias`
 }

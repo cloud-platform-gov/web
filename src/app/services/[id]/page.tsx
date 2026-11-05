@@ -1,17 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import {
-  ArrowLeftIcon,
-  Building2Icon,
-  ClockIcon,
-  FileTextIcon,
-  SendIcon,
-} from "lucide-react"
+import { ArrowLeftIcon, Building2Icon, ClockIcon, SendIcon } from "lucide-react"
 
 import { getService } from "@/lib/api/catalog"
 import type { ServiceDetail } from "@/lib/api/types"
-import { formatBytes, formatDate, formatSla, MIME_LABEL } from "@/lib/format"
+import { formatDate, formatSla } from "@/lib/format"
 import { GatewayError } from "@/lib/gateway"
 import { GatewayErrorAlert } from "@/components/app/gateway-error-alert"
 import { Badge } from "@/components/ui/badge"
@@ -23,14 +17,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-  ItemGroup,
-} from "@/components/ui/item"
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -100,49 +86,6 @@ export default async function ServiceDetailPage({ params }: Props) {
               {service.description}
             </p>
           </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Documentos exigidos</CardTitle>
-              <CardDescription>
-                {service.requirements.length === 0
-                  ? "Este serviço não exige documentos."
-                  : "Tenha estes documentos em mãos ao fazer a solicitação."}
-              </CardDescription>
-            </CardHeader>
-            {service.requirements.length > 0 && (
-              <CardContent>
-                <ItemGroup className="gap-2">
-                  {service.requirements.map((req) => (
-                    <Item key={req.name} variant="outline">
-                      <ItemMedia variant="icon">
-                        <FileTextIcon />
-                      </ItemMedia>
-                      <ItemContent>
-                        <ItemTitle>
-                          {req.name}
-                          <Badge
-                            variant={req.required ? "default" : "secondary"}
-                          >
-                            {req.required ? "Obrigatório" : "Opcional"}
-                          </Badge>
-                        </ItemTitle>
-                        {req.description && (
-                          <ItemDescription>{req.description}</ItemDescription>
-                        )}
-                        <ItemDescription>
-                          {req.acceptedMimeTypes
-                            .map((m) => MIME_LABEL[m] ?? m)
-                            .join(", ")}{" "}
-                          · até {formatBytes(req.maxSizeBytes)}
-                        </ItemDescription>
-                      </ItemContent>
-                    </Item>
-                  ))}
-                </ItemGroup>
-              </CardContent>
-            )}
-          </Card>
         </div>
 
         <aside>

@@ -51,7 +51,7 @@ export default async function ServicesPage({
     <>
       <PageHeader
         title="Catálogo de serviços"
-        description="Encontre o serviço público que você precisa e veja os documentos exigidos."
+        description="Encontre o serviço público que você precisa."
       />
       <CatalogFilters
         search={search}
